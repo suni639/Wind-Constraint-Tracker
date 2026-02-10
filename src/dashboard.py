@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import numpy as np
+from pathlib import Path
 
 # --- CONFIGURATION ---
 st.set_page_config(page_title="UK Wind Constraint Tracker", page_icon="⚡", layout="wide")
@@ -16,7 +17,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# --- EXPANDED COORDINATE DICTIONARY (Jittered) ---
+# --- COORDINATE DICTIONARY (Jittered) ---
 ASSET_LOCATIONS = {
     'T_HOWAO-1': {'lat': 53.80, 'lon': 1.90, 'name': 'Hornsea One A'},
     'T_HOWAO-2': {'lat': 53.81, 'lon': 1.91, 'name': 'Hornsea One B'},
@@ -33,24 +34,44 @@ ASSET_LOCATIONS = {
     'T_SHWS-1':  {'lat': 53.10, 'lon': 1.10,  'name': 'Sheringham Shoal'}
 }
 
-# --- DATA LOADING ---
+# --- DATA LOADING (ROBUST PATHS) ---
 @st.cache_data
 def load_data():
+    # 1. Find the project root directory
+    base_dir = Path(__file__).resolve().parent.parent
+    csv_path = base_dir / 'data' / 'raw' / 'raw_acceptances.csv'
+    excel_path = base_dir / 'data' / 'static' / 'BMUFuelType.xlsx'
+
     try:
-        df = pd.read_csv("data/raw/raw_acceptances.csv")
+        # Check if CSV exists
+        if not csv_path.exists():
+            st.error(f"🔍 File Not Found. Searching at: {csv_path}")
+            return pd.DataFrame()
+
+        df = pd.read_csv(csv_path)
+        
+        # Standard processing
         df['timeFrom'] = pd.to_datetime(df['timeFrom'])
         df['timeTo'] = pd.to_datetime(df['timeTo'])
         df['duration_hours'] = (df['timeTo'] - df['timeFrom']).dt.total_seconds() / 3600
         df['mwh_volume'] = ((df['levelFrom'] + df['levelTo']) / 2) * df['duration_hours']
         
-        static = pd.read_excel("data/static/BMUFuelType.xlsx")
-        static.columns = [c.strip() for c in static.columns]
-        wind_rows = static[static['BMRS FUEL TYPE'] == 'WIND']
-        wind_ids = set(wind_rows['NESO BMU ID'].unique()).union(set(wind_rows['SETT UNIT ID'].unique()))
-        df['bmUnitId'] = df['bmUnitId'].astype(str)
-        df = df[df['bmUnitId'].isin(wind_ids)]
+        # Load the Wind Dictionary if it exists
+        if excel_path.exists():
+            static = pd.read_excel(excel_path)
+            static.columns = [c.strip() for c in static.columns]
+            wind_rows = static[static['BMRS FUEL TYPE'] == 'WIND']
+            wind_ids = set(wind_rows['NESO BMU ID'].unique()).union(set(wind_rows['SETT UNIT ID'].unique()))
+            
+            df['bmUnitId'] = df['bmUnitId'].astype(str)
+            df = df[df['bmUnitId'].isin(wind_ids)]
+        else:
+            st.warning(f"⚠️ Wind Dictionary missing at {excel_path}. Showing all assets.")
+            
         return df
-    except:
+
+    except Exception as e:
+        st.error(f"💥 Critical Error: {e}")
         return pd.DataFrame()
 
 # --- SIDEBAR ---
@@ -70,7 +91,7 @@ st.title("🇬🇧 UK Wind Constraint Tracker")
 st.markdown("#### Mapping Grid Saturation & Financial Waste during **Storm Jocelyn**")
 
 # --- STRATEGIC SUMMARY TABS ---
-tab_overview, tab_lmp, tab_method = st.tabs(["📉 The Billion Pound Problem", "🏗️ Locational Pricing (LMP)", "🧪 Methodology"])
+tab_overview, tab_lmp, tab_method, tab_sources = st.tabs(["📉 The Billion Pound Problem", "🏗️ Locational Pricing (LMP)", "🧪 Methodology", "📚 Sources & Reading"])
 
 with tab_overview:
     st.info("""
@@ -98,15 +119,33 @@ with tab_lmp:
 
 with tab_method:
     st.markdown("""
-    ### Valuation Methodology: Why £70/MWh?
-    Our estimate of **£9.5 Million** for Storm Jocelyn is derived from the following logic:
+    ### Valuation Methodology: The Economics of £70/MWh
+    The figure of £70/MWh is not an arbitrary estimate. It reflects the **Economic Stack** that wind farms demand to break even when curtailed.
     
-    1. **Calculation:** We integrate the MW Level over Time (Hours) for every grid instruction. 
-    2. **The Valuation:** We apply a heuristic of **£70/MWh** to represent the 'opportunity cost.'
-    3. **The Justification:** * Wind farms often receive subsidies (ROCs or CfDs) for every MWh they produce. 
-        * When the grid tells them to stop, they lose that income. 
-        * To compensate, wind farms submit 'Negative Bids.' They effectively say: *"I will turn off, but you must pay me ~£70 for the subsidy I am losing."*
-    4. **Double Impact:** Note that this doesn't include the cost of the **Gas plant** started in the South to replace this energy.
+    #### 1. The Subsidy Trap
+    Most UK wind farms operate under the **Renewables Obligation (RO)** or **Contracts for Difference (CfD)** schemes.
+    * **The Incentive:** They are paid a subsidy (e.g., ~£55/MWh for RO) *only when they generate power*.
+    * **The Loss:** If the grid asks them to turn off, they lose that subsidy immediately.
+    
+    #### 2. The Negative Bid
+    To avoid losing money, wind farms submit **Negative Bids** to the grid. They effectively say:
+    > *"I will turn off, but you must pay me the subsidy I am losing (~£55) plus a margin for lost wholesale revenue (~£15)."*
+    
+    #### 3. The Result
+    This creates a "Constraint Cost" of roughly **£70/MWh**. This is money paid by the consumer to a wind farm to **not** produce energy, simply to make the farm "financially whole."
+    """)
+
+with tab_sources:
+    st.markdown("""
+    ### Primary Data Sources
+    * **Telemetry:** [Elexon Insights API](https://developer.data.elexon.co.uk/) (Bid-Offer Acceptances)
+    * **Metadata:** [NESO BM Unit Register](https://www.neso.energy/data-and-insights/bm-unit-registers) (Fuel Type Mapping)
+    * **Context:** [Met Office Storm Jocelyn Report](https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/weather/learn-about/uk-past-events/interesting/2024/2024_02_storm_jocelyn.pdf)
+    
+    ### Further Reading
+    * [Carbon Tracker: The Billion Pound Problem](https://carbontracker.org/reports/the-billion-pound-problem/)
+    * [NESO: Network Constraint Insights](https://www.neso.energy/data-and-insights/network-constraints)
+    * [LCP Delta: Zonal Pricing Savings Analysis](https://www.lcpdelta.com/insights/zonal-market-design/)
     """)
 
 # --- MAIN DATA SECTION ---
