@@ -91,13 +91,28 @@ st.title("UK Wind Constraint Tracker")
 st.markdown("#### Mapping Grid Limitations & Financial Waste during **Storm Jocelyn**")
 
 # --- STRATEGIC SUMMARY TABS ---
-tab_overview, tab_lmp, tab_method, tab_sources = st.tabs(["📉 The Billion Pound Problem", "🏗️ Locational Pricing (LMP)", "🧪 Methodology", "📚 Sources & Reading"])
+tab_execsum, tab_overview, tab_lmp, tab_method, tab_sources = st.tabs(["📈 Executive Summary", "📉 The Billion Pound Problem", "🏗️ Locational Pricing (LMP)", "🧪 Methodology", "📚 Sources & Reading"])
+
+with tab_execsum:
+    st.markdown("""
+    ### Executive Summary:
+    On January 24, 2024, the UK experienced 80mph winds during Storm Jocelyn. While the nation's wind farms were capable of powering millions of homes with cheap, renewable energy, the physical grid hit a wall. 
+    
+    This project uses real-time telemetry from the Elexon Insights API to quantify the energy discarded during this event and the resulting financial burden placed on UK consumers.
+    
+    🌪️ The Case Study: Storm Jocelyn
+    During the 24-hour period of Storm Jocelyn, the North of the UK was a green energy powerhouse, yet the grid was forced into massive interventions.
+
+    * Total Energy Discarded: ~170,000 MWh
+    * Estimated Intervention Cost: ~£12 Million
+    * Consumer Impact: Enough clean energy to power roughly 12,000 homes for a full year was lost in just 24 hours.
+    """)
 
 with tab_overview:
     st.info("""
     **The Cost of Bottlenecks:** Wind curtailment costs exceeded **£1 billion** by October 2025. 
     This arises from 'constraint payments' to switch off wind farms—primarily in Scotland—due to physical grid bottlenecks. 
-    On average, this adds roughly **£34 to every UK household bill.**
+    On average, this adds roughly **£40 to every UK household bill.** per year (with the potential to rise sharply by 2030 without infrastructure upgrades).
     """)
     col_a, col_b = st.columns(2)
     with col_a:
