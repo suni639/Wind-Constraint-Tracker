@@ -170,7 +170,8 @@ with tab_example:
     image_path = Path(__file__).resolve().parent.parent / "data" / "static" / "curtailment_example.png"
     
     if image_path.exists():
-        st.image(str(image_path), caption="Technical Curtailment: Power vs. Temperature", use_container_width=True)
+        # Replace use_container_width=True with a fixed width (e.g., 600 pixels)
+        st.image(str(image_path), caption="Technical Curtailment: Power vs. Temperature", width=600)
         st.caption("🔗 Source: [Jungle.ai | Automatic Detection of Turbine Power Curtailment](https://www.jungle.ai/blog-posts/automatic-detection-of-turbine-power-curtailment)")
     else:
         st.warning("📸 Image not found. Please save your file to 'data/static/curtailment_example.png'")
@@ -206,10 +207,6 @@ with tab_example:
         2. **The Trapezoidal Rule:** Notice that the transition at 06:00 and 18:00 (i.e. the slope). By averaging the Start and End gaps, our dashboard accounts for the 'Ramp Rate' of the turbine.
         3. **Scaling Up:** This calculation represents just **one turbine**. During Storm Jocelyn, this math was performed for **147 wind farms** (see figures in the dash below), resulting in the total **£12 Million** waste.
         """)
-        
-        st.divider()
-        st.info("💡 **Pro-Tip:** Experts like Jungle.ai use these correlations (Power vs Temperature) to automate the detection of these events, helping wind farm owners reclaim lost revenue.")
-
 
 with tab_sources:
     st.markdown("""
