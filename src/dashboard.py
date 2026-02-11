@@ -140,7 +140,7 @@ with tab_method:
     * **Logic:** Because the API limits data to single 30-minute chunks, a loop was used to reconstruct the full 24-hour picture across all 48 settlement periods.
 
     ### 2. Identity Resolution (NESO Register)
-    Raw grid data uses cryptic codes (e.g., `T_HOWAO-1`). We utilised the **NESO BM Unit Register** to map these codes to their physical fuel type, allowing us to isolate **WIND** assets and filter out gas or nuclear data.
+    Raw grid data uses cryptic codes (e.g., `T_HOWAO-1`). The **NESO BM Unit Register** was used to map these codes to their physical fuel type, allowing us to isolate **WIND** assets and filter out gas or nuclear data.
 
     ### 3. Physics-to-Finance (The Math)
     Power is measured in **Megawatts (MW)**, but we pay for **Megawatt-hours (MWh)**. Applying **Trapezoidal Rule** to calculate the volume (a fancy term you probably learned in school to work out the area under a curve):
