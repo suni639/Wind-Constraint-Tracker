@@ -4,3 +4,4 @@ requests
 streamlit
 plotly
 openpyxl
+altair==4.2.2
