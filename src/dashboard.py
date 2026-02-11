@@ -177,6 +177,9 @@ with tab_example:
         st.markdown("#### 🧪 The Step-by-Step Calculation")
         st.markdown("""
         **Parameters from the Graph:**
+                    
+        See formula in "Methodology" tab for reference.
+                    
         * **Gap at 06:00 (Start):** 700 kW missing
         * **Gap at 18:00 (End):** 700 kW missing
         * **Duration:** 12 Hours
@@ -189,7 +192,7 @@ with tab_example:
         
         st.markdown("**Financial Impact:**")
         st.latex(r"8.4\text{ MWh} \times £70 = £588")
-        st.success("**Total Intervention Cost: £588**")
+        st.success("**Total Intervention Cost (1x Turbine): £588**")
 
     # 2. Bottom Section: Explanatory text spanning the full width
     st.divider()
