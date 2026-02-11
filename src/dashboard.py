@@ -87,8 +87,8 @@ with st.sidebar:
     st.caption("Data: Elexon BMRS API | Jan 24, 2024")
 
 # --- HEADER ---
-st.title("🇬🇧 UK Wind Constraint Tracker")
-st.markdown("#### Mapping Grid Saturation & Financial Waste during **Storm Jocelyn**")
+st.title("UK Wind Constraint Tracker")
+st.markdown("#### Mapping Grid Limitations & Financial Waste during **Storm Jocelyn**")
 
 # --- STRATEGIC SUMMARY TABS ---
 tab_overview, tab_lmp, tab_method, tab_sources = st.tabs(["📉 The Billion Pound Problem", "🏗️ Locational Pricing (LMP)", "🧪 Methodology", "📚 Sources & Reading"])
@@ -107,20 +107,23 @@ with tab_overview:
 
 with tab_lmp:
     st.markdown("""
-    ### Why this project supports LMP (Zonal Pricing)
-    **The Problem:** Currently, the UK has a single 'National' price for electricity. This makes the market 'geographically blind.' 
+    ### Should we move to LMP (Zonal Pricing)?
+    **The Problem:** Currently, the UK has a single 'National' price for electricity. This makes the market geographically blind. 
     
     **The Solution (LMP):** Locational Marginal Pricing creates different price zones. 
     1. **In Scotland (The North):** During storms, prices would drop (or go negative). This signals **Demand** (Data Centers, Hydrogen) to move there to use the 'trapped' energy.
     2. **In London (The South):** Prices would reflect the scarcity of local wind, signaling **Developers** to build more generation closer to demand.
     
-    **This Project's Evidence:** The map below proves that power is abundant in the North but cannot reach the South. LMP would solve this by incentivizing demand to follow supply.
+    **The Evidence:** The map below shows that power is abundant in the North but cannot reach the South. LMP would solve this by incentivizing demand to follow supply.
     """)
 
 with tab_method:
     st.markdown("""
     ### Valuation Methodology: The Economics of £70/MWh
-    The figure of £70/MWh is not an arbitrary estimate. It reflects the **Economic Stack** that wind farms demand to break even when curtailed.
+    A flat rate of **£70/MWh** was used to the wasted volume. It reflects the **Economic Stack** that wind farms demand to break even when curtailed. This represents the **Opportunity Cost**:
+        * **Subsidy Loss:** Wind farms lose ~£55/MWh in government subsidies (ROCs/CfDs) when they stop.
+        * **Market Loss:** ~£15/MWh in lost wholesale revenue.
+        * **Total:** £70/MWh is the minimum compensation required to make the wind farm "financially whole."
     
     #### 1. The Subsidy Trap
     Most UK wind farms operate under the **Renewables Obligation (RO)** or **Contracts for Difference (CfD)** schemes.
@@ -139,13 +142,13 @@ with tab_sources:
     st.markdown("""
     ### Primary Data Sources
     * **Telemetry:** [Elexon Insights API](https://developer.data.elexon.co.uk/) (Bid-Offer Acceptances)
-    * **Metadata:** [NESO BM Unit Register](https://www.neso.energy/data-and-insights/bm-unit-registers) (Fuel Type Mapping)
-    * **Context:** [Met Office Storm Jocelyn Report](https://www.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/weather/learn-about/uk-past-events/interesting/2024/2024_02_storm_jocelyn.pdf)
+    * **Metadata:** [Elexon BM Fuel Type xlsx](https://www.elexon.co.uk/documents/data/operational-data/bmu-fuel-type/) (Fuel Type Mapping)
+    * **Context:** [Met Office Storm Jocelyn Report](https://weather.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/weather/learn-about/uk-past-events/interesting/2024/2024_02_storms_isha_jocelyn.pdf)
     
     ### Further Reading
-    * [Carbon Tracker: The Billion Pound Problem](https://carbontracker.org/reports/the-billion-pound-problem/)
+    * [Carbon Tracker: Britain wastes enough wind generation to power 1 million homes](https://carbontracker.org/britain-wastes-enough-wind-generation-to-power-1-million-homes/)
     * [NESO: Network Constraint Insights](https://www.neso.energy/data-and-insights/network-constraints)
-    * [LCP Delta: Zonal Pricing Savings Analysis](https://www.lcpdelta.com/insights/zonal-market-design/)
+    * [LCP: Zonal Pricing Savings Analysis](https://www.lcp.com/en/insights/publications/zonal-pricing-in-great-britain)
     """)
 
 # --- MAIN DATA SECTION ---

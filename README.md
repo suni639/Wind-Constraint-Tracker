@@ -52,7 +52,7 @@ $$\text{Volume (MWh)} = \frac{\text{LevelFrom} + \text{LevelTo}}{2} \times \text
 
 
 ### 4. Valuation Assumption (£70/MWh)
-A flat rate of **£70/MWh** was used to the wasted volume. This represents the **Opportunity Cost**:
+A flat rate of **£70/MWh** was applied to the wasted volume. This represents the **Opportunity Cost**:
 * **Subsidy Loss:** Wind farms lose ~£55/MWh in government subsidies (ROCs/CfDs) when they stop.
 * **Market Loss:** ~£15/MWh in lost wholesale revenue.
 * **Total:** £70/MWh is the minimum compensation required to make the wind farm "financially whole."
