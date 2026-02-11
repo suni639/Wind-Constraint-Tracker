@@ -166,7 +166,7 @@ with tab_sources:
     
     ### Further Reading
     * [Carbon Tracker: Britain wastes enough wind generation to power 1 million homes](https://carbontracker.org/britain-wastes-enough-wind-generation-to-power-1-million-homes/)
-    * [NESO: Network Constraint Insights](https://www.neso.energy/data-and-insights/network-constraints)
+    * [NESO: Network Constraint Payments](https://www.neso.energy/energy-101/electricity-explained/how-do-we-balance-grid/what-are-constraints-payments)
     * [LCP: Zonal Pricing Savings Analysis](https://www.lcp.com/en/insights/publications/zonal-pricing-in-great-britain)
     """)
 

@@ -70,7 +70,7 @@ Currently, the UK has a single national price. Under LMP, prices in Scotland wou
 1.  **Prerequisites:** Install [Python](https://www.python.org/downloads/).
 2.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/](https://github.com/)[Your-Username]/Wind-Constraint-Tracker.git
+    git clone [https://github.com/](https://github.com/)suni639/Wind-Constraint-Tracker.git
     cd Wind-Constraint-Tracker
     ```
 3.  **Install Dependencies:**
@@ -96,3 +96,4 @@ Currently, the UK has a single national price. Under LMP, prices in Scotland wou
 * **Elexon Insights:** [Developer API Portal](https://developer.data.elexon.co.uk/)
 * **LCP Delta:** [Zonal Pricing Savings Analysis](https://www.lcp.com/en/insights/publications/zonal-pricing-in-great-britain)
 * **Met Office:** [Storm Jocelyn Official Report](https://weather.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/weather/learn-about/uk-past-events/interesting/2024/2024_02_storms_isha_jocelyn.pdf)
+* **NESO:** [Network Constraint Payments](https://www.neso.energy/energy-101/electricity-explained/how-do-we-balance-grid/what-are-constraints-payments)
