@@ -9,7 +9,7 @@ On **January 24, 2024 (Storm Jocelyn)**, the UK experienced 80mph winds. While t
 
 ### View The Findings
 Follow this link to check out the interactive dashboard:
-* **[Streamlit App]**(https://suni639-wind-constraint-tracker-srcdashboard-qgymrj.streamlit.app/) 
+* **[Streamlit App](https://suni639-wind-constraint-tracker-srcdashboard-qgymrj.streamlit.app/)**
 
 ---
 
