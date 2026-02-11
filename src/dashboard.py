@@ -76,13 +76,13 @@ def load_data():
 
 # --- SIDEBAR ---
 with st.sidebar:
-    st.title("⚡ Strategy & Policy")
+    st.title("⚡ Supplementary Info")
     st.markdown("### The B6 Bottleneck")
     st.write("The B6 Boundary is the physical 'wall' between Scotland and England. During Storm Jocelyn, 98% of curtailment happened behind this wall.")
     st.divider()
-    st.markdown("### Expert Perspectives")
-    st.markdown('<div class="expert-quote">"Waste could reach £8bn/yr by 2030 without grid upgrades." — <b>Aberdeen Chamber of Commerce</b></div>', unsafe_allow_html=True)
-    st.markdown('<div class="expert-quote">"Wind provides a net benefit of £20bn/yr despite these costs." — <b>Industry Analysis</b></div>', unsafe_allow_html=True)
+    st.markdown("### Nuanced Perspectives")
+    st.markdown('<div class="expert-quote">"Curtailment waste could reach £8bn/yr by 2030 without grid upgrades." — <b>NESO</b></div>', unsafe_allow_html=True)
+    st.markdown('<div class="expert-quote">Wind energy provides a substantial net economic benefit to the UK, estimated to be £18–23 billion per year, even when accounting for roughly £1–1.5 billion in annual curtailment costs. — <b>Industry Analysis</b></div>', unsafe_allow_html=True)
     st.divider()
     st.caption("Data: Elexon BMRS API | Jan 24, 2024")
 
