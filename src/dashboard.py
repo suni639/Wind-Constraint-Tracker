@@ -91,7 +91,7 @@ st.title("UK Wind Constraint Tracker")
 st.markdown("#### Mapping Grid Limitations & Financial Waste during **Storm Jocelyn**")
 
 # --- STRATEGIC SUMMARY TABS ---
-tab_execsum, tab_overview, tab_lmp, tab_method, tab_sources = st.tabs(["📈 Executive Summary", "📉 The Billion Pound Problem", "🏗️ Locational Pricing (LMP)", "🧪 Methodology", "📚 Sources & Reading"])
+tab_execsum, tab_overview, tab_lmp, tab_method, tab_example, tab_sources = st.tabs(["📈 Executive Summary", "📉 The Billion Pound Problem", "🏗️ Locational Pricing (LMP)", "🧪 Methodology", "📊 Worked Example", "📚 Sources & Reading"])
 
 with tab_execsum:
     st.markdown("""
@@ -156,6 +156,60 @@ with tab_method:
     * **Market Loss:** ~£15/MWh in lost wholesale revenue.
     * **Total:** £70/MWh is the minimum compensation required to make the wind farm "financially whole."
     """)
+
+with tab_example:
+    st.markdown("### 🧩 Worked Example: The 'Missing' Energy Math")
+    
+    st.markdown("""
+    In the analysis below, we calculate the **lost revenue** for a single turbine based on the real-world 
+    scenario of a turbine being 'capped' due to technical or grid constraints.
+    """)
+
+    # --- IMAGE SECTION ---
+    # Image saved in 'data/static/curtailment_example.png'
+    image_path = Path(__file__).resolve().parent.parent / "data" / "static" / "curtailment_example.png"
+    
+    if image_path.exists():
+        st.image(str(image_path), caption="Technical Curtailment: Power vs. Temperature", use_container_width=True)
+        st.caption("🔗 Source: [Jungle.ai | Automatic Detection of Turbine Power Curtailment](https://www.jungle.ai/blog-posts/automatic-detection-of-turbine-power-curtailment)")
+    else:
+        st.warning("📸 Image not found. Please save your file to 'data/static/curtailment_example.png'")
+        st.markdown("🔗 **[View Original Source Image Here](https://www.jungle.ai/blog-posts/automatic-detection-of-turbine-power-curtailment)**")
+
+    st.divider()
+
+    col_math, col_context = st.columns([1, 1])
+
+    with col_math:
+        st.markdown("#### 🧪 The Step-by-Step Calculation")
+        st.markdown("""
+        **Data Points from the Graph:**
+        * **Gap at 06:00 (Start):** Potential (2,300 kW) - Actual (1,600 kW) = **700 kW missing**
+        * **Gap at 18:00 (End):** Potential (2,300 kW) - Actual (1,600 kW) = **700 kW missing**
+        * **Duration:** 12 Hours
+        """)
+
+        # The Trapezoidal Formula
+        st.latex(r"\text{Volume (kWh)} = \frac{700\text{ (Start Gap)} + 700\text{ (End Gap)}}{2} \times 12\text{ (Hours)}")
+        
+        st.write("Average Lost Power: **700 kW**")
+        st.write("Total Lost Energy: **8,400 kWh (8.4 MWh)**")
+        
+        st.markdown("#### 💸 The Financial Impact")
+        st.latex(r"8.4\text{ MWh} \times £70 = £588")
+        st.success("**Total Cost for this specific intervention: £588**")
+
+    with col_context:
+        st.markdown("#### 🧐 Why we use this specific math")
+        st.write("""
+        1. **The 'Missing' Energy:** We don't calculate the energy that was *produced* (which would be something close to the area of the yellow box). Instead, we calculate the energy that was *lost* (the empty space above it the green line in that time period).
+        2. **The Trapezoidal Rule:** Notice that the transition at 06:00 and 18:00 (i.e. the slope). By averaging the Start and End gaps, our dashboard accounts for the 'Ramp Rate' of the turbine.
+        3. **Scaling Up:** This calculation represents just **one turbine**. During Storm Jocelyn, this math was performed for **147 wind farms** (see figures in the dash below), resulting in the total **£12 Million** waste.
+        """)
+        
+        st.divider()
+        st.info("💡 **Pro-Tip:** Experts like Jungle.ai use these correlations (Power vs Temperature) to automate the detection of these events, helping wind farm owners reclaim lost revenue.")
+
 
 with tab_sources:
     st.markdown("""
