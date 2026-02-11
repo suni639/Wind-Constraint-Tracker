@@ -95,17 +95,17 @@ tab_execsum, tab_overview, tab_lmp, tab_method, tab_sources = st.tabs(["📈 Exe
 
 with tab_execsum:
     st.markdown("""
-    ### Executive Summary:
     On January 24, 2024, the UK experienced 80mph winds during Storm Jocelyn. While the nation's wind farms were capable of powering millions of homes with cheap, renewable energy, the physical grid hit a wall. 
     
     This project uses real-time telemetry from the Elexon Insights API to quantify the energy discarded during this event and the resulting financial burden placed on UK consumers.
     
-    🌪️ The Case Study: Storm Jocelyn
+    **🌪️ The Case Study:** Storm Jocelyn
+    
     During the 24-hour period of Storm Jocelyn, the North of the UK was a green energy powerhouse, yet the grid was forced into massive interventions.
 
-    * Total Energy Discarded: ~170,000 MWh
-    * Estimated Intervention Cost: ~£12 Million
-    * Consumer Impact: Enough clean energy to power roughly 12,000 homes for a full year was lost in just 24 hours.
+    * **Total Energy Discarded:** ~170,000 MWh
+    * **Estimated Intervention Cost:** ~£12 Million
+    * **Consumer Impact:** Enough clean energy to power roughly 12,000 homes for a full year was lost in just 24 hours.
     """)
 
 with tab_overview:
