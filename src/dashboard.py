@@ -212,7 +212,7 @@ if not df.empty:
                 })
         if map_data:
             st.map(pd.DataFrame(map_data), latitude='lat', longitude='lon', size='size', zoom=4.5)
-            st.caption("Dots represent physical locations of curtailed wind farms (B6 Boundary emphasis).")
+            st.caption("Dots represent physical locations of curtailed wind farms (B6 Boundary emphasis). Note that the Scottish farms are huge, so several assets may be clustered due to proximity and aren't individually distinguishable in the map.")
     
     with st.expander("💾 Raw Grid Telemetry Inspector"):
         st.dataframe(df[['timeFrom', 'bmUnitId', 'levelFrom', 'levelTo', 'mwh_volume']].sort_values('mwh_volume', ascending=False))
