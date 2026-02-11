@@ -121,9 +121,9 @@ with tab_method:
     st.markdown("""
     ### Valuation Methodology: The Economics of £70/MWh
     A flat rate of **£70/MWh** was used to the wasted volume. It reflects the **Economic Stack** that wind farms demand to break even when curtailed. This represents the **Opportunity Cost**:
-        * **Subsidy Loss:** Wind farms lose ~£55/MWh in government subsidies (ROCs/CfDs) when they stop.
-        * **Market Loss:** ~£15/MWh in lost wholesale revenue.
-        * **Total:** £70/MWh is the minimum compensation required to make the wind farm "financially whole."
+    * **Subsidy Loss:** Wind farms lose ~£55/MWh in government subsidies (ROCs/CfDs) when they stop.
+    * **Market Loss:** ~£15/MWh in lost wholesale revenue.
+    * **Total:** £70/MWh is the minimum compensation required to make the wind farm "financially whole."
     
     #### 1. The Subsidy Trap
     Most UK wind farms operate under the **Renewables Obligation (RO)** or **Contracts for Difference (CfD)** schemes.
