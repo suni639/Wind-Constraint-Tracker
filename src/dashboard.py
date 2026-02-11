@@ -134,23 +134,23 @@ with tab_lmp:
 
 with tab_method:
     st.markdown("""
-    ### Valuation Methodology: The Economics of £70/MWh
-    A flat rate of **£70/MWh** was used to the wasted volume. It reflects the **Economic Stack** that wind farms demand to break even when curtailed. This represents the **Opportunity Cost**:
+    ### 1. Data Ingestion (Elexon BMRS API)
+    A Python pipeline was developed to query the **Elexon Insights API**. 
+    * **Target Data:** Bid-Offer Acceptances (BOAs)—the literal instructions sent by the grid to generators.
+    * **Logic:** Because the API limits data to single 30-minute chunks, a loop was used to reconstruct the full 24-hour picture across all 48 settlement periods.
+
+    ### 2. Identity Resolution (NESO Register)
+    Raw grid data uses cryptic codes (e.g., `T_HOWAO-1`). We utilised the **NESO BM Unit Register** to map these codes to their physical fuel type, allowing us to isolate **WIND** assets and filter out gas or nuclear data.
+
+    ### 3. Physics-to-Finance (The Math)
+    Power is measured in **Megawatts (MW)**, but we pay for **Megawatt-hours (MWh)**. Applying **Trapezoidal Rule** to calculate the volume (a fancy term you probably learned in school to work out the area under a curve):
+    $$\text{Volume (MWh)} = \frac{\text{LevelFrom} + \text{LevelTo}}{2} \times \text{Duration (Hours)}$$
+
+    ### 4. Valuation Assumption (£70/MWh)
+    A flat rate of **£70/MWh** was applied to the wasted volume. This represents the **Opportunity Cost**:
     * **Subsidy Loss:** Wind farms lose ~£55/MWh in government subsidies (ROCs/CfDs) when they stop.
     * **Market Loss:** ~£15/MWh in lost wholesale revenue.
     * **Total:** £70/MWh is the minimum compensation required to make the wind farm "financially whole."
-    
-    #### 1. The Subsidy Trap
-    Most UK wind farms operate under the **Renewables Obligation (RO)** or **Contracts for Difference (CfD)** schemes.
-    * **The Incentive:** They are paid a subsidy (e.g., ~£55/MWh for RO) *only when they generate power*.
-    * **The Loss:** If the grid asks them to turn off, they lose that subsidy immediately.
-    
-    #### 2. The Negative Bid
-    To avoid losing money, wind farms submit **Negative Bids** to the grid. They effectively say:
-    > *"I will turn off, but you must pay me the subsidy I am losing (~£55) plus a margin for lost wholesale revenue (~£15)."*
-    
-    #### 3. The Result
-    This creates a "Constraint Cost" of roughly **£70/MWh**. This is money paid by the consumer to a wind farm to **not** produce energy, simply to make the farm "financially whole."
     """)
 
 with tab_sources:
