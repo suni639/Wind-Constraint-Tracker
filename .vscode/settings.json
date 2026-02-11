@@ -3,6 +3,7 @@
         "BLLWA",
         "BMRS",
         "Burbo",
+        "Cashout",
         "categoryorder",
         "CLDNW",
         "Elexon",
@@ -10,6 +11,7 @@
         "Hornsea",
         "HOWAO",
         "HOWBO",
+        "incentivizing",
         "KHTML",
         "Kilgallioch",
         "KILRW",
@@ -17,9 +19,15 @@
         "numpy",
         "openpyxl",
         "plotly",
+        "Renewables",
+        "Sheringham",
+        "SHWS",
         "streamlit",
         "subsea",
+        "utilised",
+        "Walney",
         "WHILW",
-        "Whitelee"
+        "Whitelee",
+        "WLNYW"
     ]
 }
