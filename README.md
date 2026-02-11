@@ -7,7 +7,9 @@
 ## 📖 Executive Summary
 On **January 24, 2024 (Storm Jocelyn)**, the UK experienced 80mph winds. While the nation's wind farms were capable of powering millions of homes with cheap, renewable energy, the physical grid hit a wall. This project uses real-time telemetry from the **Elexon Insights API** to quantify the energy discarded during this event and the resulting financial burden placed on UK consumers.
 
-
+### View The Findings
+Follow this link to check out the interactive dashboard:
+* **[Streamlit App]**(https://suni639-wind-constraint-tracker-srcdashboard-qgymrj.streamlit.app/) 
 
 ---
 
