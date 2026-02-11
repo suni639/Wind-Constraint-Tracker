@@ -1,7 +1,7 @@
 pandas
 numpy
 requests
-streamlit
+streamlit>=1.40.0
 plotly
 openpyxl
-altair==4.2.2
+altair<5
