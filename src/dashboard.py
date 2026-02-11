@@ -81,8 +81,8 @@ with st.sidebar:
     st.write("The B6 Boundary is the physical 'wall' between Scotland and England. During Storm Jocelyn, 98% of curtailment happened behind this wall.")
     st.divider()
     st.markdown("### Nuanced Perspectives")
-    st.markdown('<div class="expert-quote">"Curtailment waste could reach £8bn/yr by 2030 without grid upgrades." — <b>NESO</b></div>', unsafe_allow_html=True)
-    st.markdown('<div class="expert-quote">"UK investment in wind energy generated a net financial benefit of more than £100bn for energy consumers between 2010 and 2023, challenging misconceptions about the cost of the green energy transition." — <b>Industry Analysis</b></div>', unsafe_allow_html=True)
+    st.markdown('<div class="expert-quote">"Curtailment waste could reach £8bn/yr by 2030 without grid upgrades." <b>— NESO</b></div>', unsafe_allow_html=True)
+    st.markdown('<div class="expert-quote">"UK investment in wind energy generated a net financial benefit of more than £100bn for energy consumers between 2010 and 2023, challenging misconceptions about the cost of the green energy transition." <b>— UCL Open Environment</b></div>', unsafe_allow_html=True)
     st.divider()
     st.caption("Data: Elexon BMRS API | Jan 24, 2024")
 
