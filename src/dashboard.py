@@ -144,8 +144,12 @@ with tab_method:
 
     ### 3. Physics-to-Finance (The Math)
     Power is measured in **Megawatts (MW)**, but we pay for **Megawatt-hours (MWh)**. Applying **Trapezoidal Rule** to calculate the volume (a fancy term you probably learned in school to work out the area under a curve):
-    $$\text{Volume (MWh)} = \frac{\text{LevelFrom} + \text{LevelTo}}{2} \times \text{Duration (Hours)}$$
+    """)
+    
+    # This renders the beautiful math formula using LaTeX in Streamlit
+    st.latex(r"\text{Volume (MWh)} = \frac{\text{LevelFrom} + \text{LevelTo}}{2} \times \text{Duration (Hours)}")
 
+    st.markdown("""
     ### 4. Valuation Assumption (£70/MWh)
     A flat rate of **£70/MWh** was applied to the wasted volume. This represents the **Opportunity Cost**:
     * **Subsidy Loss:** Wind farms lose ~£55/MWh in government subsidies (ROCs/CfDs) when they stop.
