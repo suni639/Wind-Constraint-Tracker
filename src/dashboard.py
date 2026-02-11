@@ -168,7 +168,7 @@ with tab_example:
         image_path = Path(__file__).resolve().parent.parent / "data" / "static" / "curtailment_example.png"
         
         if image_path.exists():
-            st.image(str(image_path), width=500)
+            st.image(str(image_path), width=600)
             st.caption("🔗 Source: [Jungle.ai](https://www.jungle.ai/blog-posts/automatic-detection-of-turbine-power-curtailment)")
         else:
             st.warning("📸 Image not found at 'data/static/curtailment_example.png'")
