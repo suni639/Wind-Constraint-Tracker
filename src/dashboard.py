@@ -13,7 +13,7 @@ st.markdown("""
     [data-testid="stMetricValue"] { font-size: 2.2rem !important; color: #FF4B4B; }
     .stInfo { background-color: #f8f9fa; padding: 1.5rem; border-radius: 0.8rem; border-left: 6px solid #FF4B4B; }
     .context-box { background-color: #e9ecef; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; }
-    .expert-quote { font-style: italic; color: #444; border-left: 3px solid #FF4B4B; padding-left: 15px; margin: 15px 0; font-size: 0.95rem; }
+    .expert-quote { font-style: italic; border-left: 3px solid #FF4B4B; padding-left: 15px; margin: 15px 0; font-size: 0.95rem; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -82,7 +82,7 @@ with st.sidebar:
     st.divider()
     st.markdown("### Nuanced Perspectives")
     st.markdown('<div class="expert-quote">"Curtailment waste could reach £8bn/yr by 2030 without grid upgrades." — <b>NESO</b></div>', unsafe_allow_html=True)
-    st.markdown('<div class="expert-quote">Wind energy provides a substantial net economic benefit to the UK, estimated to be £18–23 billion per year, even when accounting for roughly £1–1.5 billion in annual curtailment costs. — <b>Industry Analysis</b></div>', unsafe_allow_html=True)
+    st.markdown('<div class="expert-quote">"UK investment in wind energy generated a net financial benefit of more than £100bn for energy consumers between 2010 and 2023, challenging misconceptions about the cost of the green energy transition." — <b>Industry Analysis</b></div>', unsafe_allow_html=True)
     st.divider()
     st.caption("Data: Elexon BMRS API | Jan 24, 2024")
 
