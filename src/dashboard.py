@@ -211,6 +211,9 @@ with tab_sources:
     * **Metadata:** [Elexon BM Fuel Type xlsx](https://www.elexon.co.uk/documents/data/operational-data/bmu-fuel-type/) (Fuel Type Mapping)
     * **Context:** [Met Office Storm Jocelyn Report](https://weather.metoffice.gov.uk/binaries/content/assets/metofficegovuk/pdf/weather/learn-about/uk-past-events/interesting/2024/2024_02_storms_isha_jocelyn.pdf)
     
+    ### Project Code
+    * The full codebase for this project is open-source and available on GitHub: [github.com/suni639/uk-wind-constraint-tracker](https://github.com/suni639/Wind-Constraint-Tracker)            
+    
     ### Further Reading
     * [Carbon Tracker: Britain wastes enough wind generation to power 1 million homes](https://carbontracker.org/britain-wastes-enough-wind-generation-to-power-1-million-homes/)
     * [NESO: Network Constraint Payments](https://www.neso.energy/energy-101/electricity-explained/how-do-we-balance-grid/what-are-constraints-payments)
